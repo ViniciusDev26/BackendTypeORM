@@ -1,11 +1,12 @@
-import "reflect-metadata";
-import './database/connection';
+import {createConnection} from "typeorm";
 
 import express from 'express';
 import routes from './routes';
 
-const app = express();
+createConnection().then(connection => {
+  const app = express();
 
-app.use(routes);
+  app.use(routes);
 
-app.listen(3333);
+  app.listen(3333);
+});
